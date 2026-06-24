@@ -1,5 +1,6 @@
 import os
 import tempfile
+import pytest
 
 from csv_analyzer.reader import read_csv
 
@@ -43,11 +44,8 @@ def test_read_csv_missing_required_column():
     with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
         f.write(data)
         f.flush()
-        try:
+        with pytest.raises(KeyError):
             read_csv(f.name)
-            assert False, "Должно быть KeyError из-за отсутствия status"
-        except KeyError:
-            pass
     os.unlink(f.name)
 
 def test_read_csv_invalid_date():
@@ -57,9 +55,6 @@ def test_read_csv_invalid_date():
     with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
         f.write(data)
         f.flush()
-        try:
+        with pytest.raises(ValueError):
             read_csv(f.name)
-            assert False, "Должно быть ValueError из-за формата даты"
-        except ValueError:
-            pass
     os.unlink(f.name)
