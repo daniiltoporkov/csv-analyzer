@@ -36,3 +36,30 @@ def test_read_missing_file():
         assert False, "Должно было возникнуть исключение"
     except FileNotFoundError:
         pass
+def test_read_csv_missing_required_column():
+    data = """id,category,created,closed
+1,Software,2026-05-01 10:00:00,
+"""
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+        f.write(data)
+        f.flush()
+        try:
+            read_csv(f.name)
+            assert False, "Должно быть KeyError из-за отсутствия status"
+        except KeyError:
+            pass
+    os.unlink(f.name)
+
+def test_read_csv_invalid_date():
+    data = """id,category,status,created,closed
+1,Software,Closed,01-05-2026 10:00:00,
+"""
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+        f.write(data)
+        f.flush()
+        try:
+            read_csv(f.name)
+            assert False, "Должно быть ValueError из-за формата даты"
+        except ValueError:
+            pass
+    os.unlink(f.name)
