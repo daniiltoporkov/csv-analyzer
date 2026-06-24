@@ -30,4 +30,6 @@ def closed_fraction(tickets: List[Ticket]) -> float:
         return 0.0
     closed_count = sum(1 for t in tickets if t.status == "Closed")
     return (closed_count / len(tickets)) * 100
+
+
 # end of stats module
