@@ -9,3 +9,5 @@ description = "CSV ticket analyzer CLI"
 requires-python = ">=3.10"
 dependencies = []
 optional-dependencies = {dev = ["pytest", "black", "isort", "pre-commit"]}
+[tool.black]
+target-version = ['py310']
