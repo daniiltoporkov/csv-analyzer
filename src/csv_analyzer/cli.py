@@ -14,7 +14,7 @@ def main():
     path = sys.argv[1]
     tickets = read_csv(path)
 
-    print(f"Записей обработано: {len(tickets)}")
+    print(f"Всего обработано записей: {len(tickets)}")
     print("\nКоличество по статусам:")
     for status, cnt in count_by_status(tickets).items():
         print(f"  {status}: {cnt}")
