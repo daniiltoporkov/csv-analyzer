@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.10'
       - name: Install dependencies
-        run: pip install -e '.[dev]'
+        run: pip install pytest pytest-cov black isort
       - name: Lint with black and isort (non-blocking)
         run: |
           black --check --diff src tests || true
