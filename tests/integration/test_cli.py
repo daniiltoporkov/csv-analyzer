@@ -41,7 +41,8 @@ def test_cli_json_output():
     output = json.loads(result.stdout)
     assert output["total"] == 1
     assert output["by_status"]["Closed"] == 1
-    
+
+
 def test_cli_file_not_found():
     result = subprocess.run(
         [sys.executable, "-m", "csv_analyzer.cli", "nonexistent.csv"],

@@ -57,10 +57,21 @@ def test_empty_tickets():
     assert count_by_category([]) == {}
     assert average_resolution_time_hours([]) == 0.0
     assert closed_fraction([]) == 0.0
+
+
 def test_average_resolution_time_no_closed():
-    t = [Ticket(1, 'Hardware', 'Open', datetime(2026,5,1,10,0,0), None)]
+    t = [Ticket(1, "Hardware", "Open", datetime(2026, 5, 1, 10, 0, 0), None)]
     assert average_resolution_time_hours(t) == 0.0
 
+
 def test_closed_fraction_all_closed():
-    t = [Ticket(1, 'Hardware', 'Closed', datetime(2026,5,1,10,0,0), datetime(2026,5,1,14,0,0))]
+    t = [
+        Ticket(
+            1,
+            "Hardware",
+            "Closed",
+            datetime(2026, 5, 1, 10, 0, 0),
+            datetime(2026, 5, 1, 14, 0, 0),
+        )
+    ]
     assert closed_fraction(t) == 100.0
