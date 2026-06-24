@@ -1,4 +1,5 @@
-"""Интерфейс командной строки для CSV-анализатора."""
+"""Интерфейс командной строки с JSON-экспортом."""
+import json
 import sys
 
 from csv_analyzer.reader import read_csv
@@ -8,7 +9,7 @@ from csv_analyzer.stats import (average_resolution_time_hours, closed_fraction,
 
 def main():
     if len(sys.argv) < 2:
-        print("Использование: python -m csv_analyzer.cli <путь к CSV>")
+        print("Использование: python -m csv_analyzer.cli <путь к CSV> [--json]")
         sys.exit(1)
 
     path = sys.argv[1]
