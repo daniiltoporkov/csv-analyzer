@@ -20,7 +20,7 @@ def test_cli_text_output():
         )
     os.unlink(f.name)
     assert result.returncode == 0
-    assert "Записей обработано: 2" in result.stdout
+    assert "Всего обработано записей: 2" in result.stdout
     assert "Software" in result.stdout
 
 
